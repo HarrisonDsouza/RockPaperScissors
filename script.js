@@ -9,14 +9,10 @@ function getComputerChoice(){
 getComputerChoice();
 
 
-//play a round of game
-
-
-
-// play 5 rounds
 let compPoints = 0;
 let playerPoints = 0;
 
+// play 1 round
 function playRound(playerSelection, computerSelection){
     if(playerSelection == computerSelection){
         console.log("Its a draw!");
@@ -33,6 +29,7 @@ function playRound(playerSelection, computerSelection){
 }
 
 
+// play 5 rounds
 for (let i=1; i <= 5; i++ ){
     console.log(`Round : ${i}`);
     
@@ -47,3 +44,16 @@ for (let i=1; i <= 5; i++ ){
     playRound(playerSelection, computerSelection);
 
 }
+
+// Result of game
+function result(){
+    if(compPoints == playerPoints) {
+        alert(`Final Result : It's a tie!`);
+    } else if(compPoints > playerPoints) {
+        alert('Computer won the game!!');
+    } else {
+        alert('You won the game!!')
+    }
+}
+
+result();
