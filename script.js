@@ -7,7 +7,7 @@ function getComputerChoice(){
     return choice[Math.floor(Math.random()*(choice.length))];
 }
 
-// get player choice
+// set player selection
 
 function optionName(opt){
     if(opt.className == "option-1"){
@@ -21,38 +21,42 @@ function optionName(opt){
 
 
 
-// play 1 round
+
+
+
+
+
+
+const compPointsCount  = document.querySelector('.game-section .computer-points h1');
+const playerPointsCount  = document.querySelector('.game-section .player-points h1');
+const roundInfo =  document.createElement('p');
 function playRound(playerSelection, computerSelection){
+
+    document.querySelector('.game-section .round-info').appendChild(roundInfo);
     if(playerSelection == computerSelection){
-        console.log("Its a draw!");
-        console.log(`Your point(s) : ${playerPoints} and Computer point(s) : ${compPoints}`);
+        roundInfo.textContent = "Its a draw!";
     } else if((computerSelection == "paper" && playerSelection == "rock")||(computerSelection == "rock" && playerSelection == "scissors") || (computerSelection == "scissors" && playerSelection == "paper")){
         compPoints++;
-        if(compPoints == 5 && playerPoints <= 5){
+        if(compPoints == 5 && playerPoints < 5){
             alert("computer wins");
             return;
         }
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        console.log(`Your point(s) : ${playerPoints} and Computer point(s) : ${compPoints}`);
+        roundInfo.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+        compPointsCount.textContent = compPoints;
     } else{
         playerPoints++;
-        if(playerPoints == 5 && compPoints <= 5){
+        if(playerPoints == 5 && compPoints < 5){
             alert("you win");
             return;
         }
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        console.log(`Your point(s) : ${playerPoints} and Computer point(s) : ${compPoints}`);
+        roundInfo.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+        playerPointsCount.textContent = playerPoints;
     }
+
+    document.querySelector('.game-section > h3').textContent = "First to score 5 points wins";
+
 }
 
-// Result of game
-function result(){
-    if(compPoints == 5 && playerPoints <= 5){
-        alert("computer wins");
-    }else alert("you win");
-}
-
-//play continuous until one reaches 5 points
 
 let compPoints = 0;
 let playerPoints = 0;
